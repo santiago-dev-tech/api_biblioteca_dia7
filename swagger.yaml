@@ -1,0 +1,12 @@
+openapi: 3.0.0
+info:
+  title: API Biblioteca - Día 7 (Producción)
+  description: API desplegada en la nube con Node.js y MySQL
+  version: 1.0.0
+paths:
+  /api/libros:
+    get:
+      summary: Obtener lista de libros
+      responses:
+        '200':
+          description: Lista de libros devuelta con éxito

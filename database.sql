@@ -1,0 +1,32 @@
+CREATE TABLE IF NOT EXISTS autores (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    nacionalidad VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS libros (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    titulo VARCHAR(150) NOT NULL,
+    anio INT,
+    autor_id INT NOT NULL,
+    disponible BOOLEAN DEFAULT TRUE,
+    FOREIGN KEY (autor_id) REFERENCES autores(id)
+);
+
+CREATE TABLE IF NOT EXISTS usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    clave VARCHAR(255) NOT NULL,
+    creado_en DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS prestamos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    libro_id INT NOT NULL,
+    usuario_id INT NOT NULL,
+    fecha_prestamo DATETIME DEFAULT CURRENT_TIMESTAMP,
+    fecha_devolucion DATETIME NULL,
+    FOREIGN KEY (libro_id) REFERENCES libros(id),
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
